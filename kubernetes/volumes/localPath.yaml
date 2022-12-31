@@ -12,3 +12,11 @@ spec:
     - ReadWriteOnce
   local:
     path: "/var/kdata" # Sets the volume's path  - folder should exist on local file-system
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - accenture-control-plane   # type local-starage requires node affinity

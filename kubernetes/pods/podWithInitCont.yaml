@@ -6,14 +6,19 @@ metadata:
     run: busybox
   name: busybox
 spec:
-  containers:
-  - command:
-    - sleep
-    - "5000"
+  initContainers:
+  - name: init-create-folder
     image: busybox:1.28
-    name: busybox
+    command: ['sh', '-c', "cd /my/data && ls -all && mkdir initVolume"]
     volumeMounts:
-      - mountPath: "/mydata"
+      - mountPath: "/my/data"
+        name: mydata
+  containers:
+  - name: busybox
+    image: busybox:1.28
+    command: ['sh', '-c', "ls /my/data -all && sleep 900"]
+    volumeMounts:
+      - mountPath: "/my/data"
         name: mydata
     resources: {}
   volumes:
