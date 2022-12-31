@@ -13,13 +13,17 @@ spec:
     image: busybox:1.28
     name: busybox
     volumeMounts:
-      - mountPath: "/mydata"
+      - mountPath: "/my/data"
         name: mydata
     resources: {}
   volumes:
     - name: mydata
       persistentVolumeClaim:
-        claimName: local-path-claim    # example can be found in volume folder
+        claimName: redis-data-claim    # example can be found in volume folder
+  securityContext:
+    runAsUser: 1001  # simulating bitnami apps
+    runAsGroup: 1001
+    fsGroup: 1001
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}

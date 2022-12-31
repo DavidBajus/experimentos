@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: busybox
+  name: busybox
+spec:
+  initContainers:
+  - name: init-create-folder
+    image: busybox:1.28
+    command: ['sh', '-c', "cd /my/data && ls -all && mkdir initVolume"]
+    volumeMounts:
+      - mountPath: "/my/data"
+        name: mydata
+  containers:
+  - name: busybox
+    image: busybox:1.28
+    command: ['sh', '-c', "ls /my/data -all && sleep 900"]
+    volumeMounts:
+      - mountPath: "/my/data"
+        name: mydata
+    securityContext:
+      runAsUser: 1001  # user maybe not exist in busybox image
+      runAsGroup: 1001
+      fsGroup: 1001
+  volumes:
+    - name: mydata
+      persistentVolumeClaim:
+        claimName: local-path-claim    # example can be found in volume folder
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
