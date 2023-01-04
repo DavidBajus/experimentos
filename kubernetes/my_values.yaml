@@ -1,0 +1,17 @@
+# define default database user, name, and password for PostgreSQL deployment
+auth:
+
+  enablePostgresUser: true
+  postgresPassword: "Strong321sword"
+  username: "appUser"
+  password: "AppPassword"
+  database: "app_db"
+
+# The postgres helm chart deployment will be using PVC postgresql-data-claim
+primary:
+  persistence:
+    enabled: true
+    existingClaim: "postgresql-data-claim"
+
+volumePermissions:
+  enabled: true
