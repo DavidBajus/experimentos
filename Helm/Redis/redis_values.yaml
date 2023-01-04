@@ -1,0 +1,16 @@
+auth:
+  password: "RedisPass123"
+
+master:
+  persistence:
+    existingClaim: "redis-data-claim"
+
+replica:
+  replicaCount: 1
+
+replica:
+  persistence:
+    existingClaim: "redis-data-claim"
+
+volumePermissions:
+  enabled: true

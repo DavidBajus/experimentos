@@ -1,6 +1,5 @@
 # define default database user, name, and password for PostgreSQL deployment
 auth:
-
   enablePostgresUser: true
   postgresPassword: "Strong321sword"
   username: "appUser"
@@ -13,5 +12,6 @@ primary:
     enabled: true
     existingClaim: "postgresql-data-claim"
 
+# For running init container which will set up permision to postgres data folder
 volumePermissions:
   enabled: true
