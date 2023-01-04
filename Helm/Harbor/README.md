@@ -6,7 +6,11 @@ helm repo update
 
 //You can download the default values.yaml file.
 wget https://raw.githubusercontent.com/goharbor/harbor-helm/master/values.yaml
+
+// update values.yaml
 vim values.yaml
+
+// install harbor
 helm install harbor harbor/harbor -f values.yaml -n harbor
 
 helm status harbor
