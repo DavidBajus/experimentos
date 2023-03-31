@@ -354,3 +354,4 @@ MigrationBackup/
 # kuttl
 kuttl/kubeconfig
 kubeconfig
+kind-logs*
