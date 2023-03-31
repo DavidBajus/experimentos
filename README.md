@@ -1,8 +1,8 @@
-# experimentos
+# experiments
 For quick debug
 
-# tun run tests
+# to try something new
 For short "Hello World examples"
 
-# For some Notes
-GitHub Eperiments :)
+# GitHub Experiments :)
+For some notes
